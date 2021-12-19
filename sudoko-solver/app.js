@@ -1,5 +1,5 @@
 const pullzeBoard = document.querySelector("#puzzle");
-const solveButton = document.querySelector("#solve-butto");
+const solveButton = document.querySelector("#solve-button");
 const squares = 81;
 const submission = [];
 
@@ -14,39 +14,15 @@ for (let i = 0; i < squares; i++) {
   pullzeBoard.appendChild(inputElement);
 }
 const joinValues = () => {
+  submission.length = 0;
   const inputs = document.querySelectorAll("input");
   inputs.forEach((input) => {
-    if (input.value !== "") {
+    if (input.value) {
       submission.push(input.value);
     } else {
       submission.push(".");
     }
   });
+  console.log(submission);
 };
-solveButton.addEventListener("click", () => {
-  joinValues();
-  const solution = solveSudoku(submission);
-  if (solution) {
-    alert("Solved");
-  } else {
-    alert("Unsolvable");
-  }
-});
-
-function solveSudoku(submission) {
-  const board = submission.slice();
-  const empty = findEmpty(board);
-  if (!empty) {
-    return true;
-  }
-  for (let i = 1; i <= 9; i++) {
-    if (isValid(board, empty, i)) {
-      board[empty] = i;
-      if (solveSudoku(board)) {
-        return true;
-      }
-      board[empty] = ".";
-    }
-  }
-  return false;
-}
+solveButton.addEventListener("click", joinValues);
