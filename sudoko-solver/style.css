@@ -1,3 +1,6 @@
+body {
+  background-color: #000;
+}
 #puzzle {
   width: 460px;
   height: 500px;
@@ -35,4 +38,45 @@
   background-color: #50b395;
   box-shadow: 0 0 10px #000;
   box-shadow: rgba(2, 204, 36, 0.56) 0px 22px 70px 4px;
+}
+button {
+  margin-top: 2%;
+  outline: 0;
+  position: relative;
+  display: inline-block;
+  padding: 10px 55px;
+  font-size: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid #24c05a;
+  background: #2984b1;
+  color: white;
+  font-weight: 600;
+  transition: box-shadow 0.1s ease-in-out, border-color 0.2s ease-in-out;
+  border-radius: 25px;
+}
+button:hover {
+  background-color: #ffff00;
+  color: #000;
+  box-shadow: 0 0 5px #ffff00, 0 0 20px rgb(255 255 0 / 0.8),
+    0 0 35px rgb(255 255 0 / 0.7), 0 0 50px rgb(255 255 0 / 0.6);
+  border-color: #fff;
+}
+.container {
+  margin-top: 2%;
+  /* display: grid;
+  grid-template-columns: 1fr 1fr; */
+  width: 400px;
+  margin: auto;
+  align-items: center;
+  gap: 10px;
+}
+.max {
+  width: 397px;
+  background-color: #46105f;
+  color: white;
+}
+.solver {
+  background-color: #53b350;
+  color: white;
 }

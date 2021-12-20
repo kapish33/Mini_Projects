@@ -1,5 +1,8 @@
 const pullzeBoard = document.querySelector("#puzzle");
 const solveButton = document.querySelector("#solve-button");
+const clearButton = document.querySelector("#clear-button");
+// const gnerateButton = document.querySelector("#generate-solved-puzzle");
+const generateSudukoQuestion = document.querySelector("#generate-button");
 const squares = 81;
 const submission = [];
 
@@ -42,7 +45,43 @@ const joinValues = () => {
   }
 };
 solveButton.addEventListener("click", joinValues);
+clearButton.addEventListener("click", () => {
+  const inputs = document.querySelectorAll("input");
+  inputs.forEach((input) => {
+    input.value = "";
+  });
+});
 
+generateSudukoQuestion.addEventListener("click", () => {
+  const inputs = document.querySelectorAll("input");
+  inputs.forEach((input) => {
+    input.value = "";
+  });
+  var matrix = [];
+  var track = 0;
+  for (let i = 0; i < 9; i++) {
+    var met = [];
+    for (let j = 0; j < 9; j++) {
+      met.push(Math.floor(Math.random() * 9) + 1);
+    }
+    matrix.push(met);
+  }
+  var k = 0;
+  var arr = [];
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      var me = Math.floor(Math.random() * 8) + 1; // radnom number between 1 to 9
+      if ((me == 3 || me == 2 || me == 1) && !arr.includes(matrix[i][j])) {
+        inputs[k++].value = matrix[i][j];
+        arr.push(matrix[i][j]);
+      } else {
+        inputs[k++].value = "";
+      }
+    }
+  }
+});
+
+// line 102 to 135 is dedicated to solev suduko solver ends here
 const solveSudoku = (g) => {
   dfs(g);
 };
