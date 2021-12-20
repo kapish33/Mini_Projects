@@ -57,6 +57,10 @@ generateSudukoQuestion.addEventListener("click", () => {
   inputs.forEach((input) => {
     input.value = "";
   });
+  inputs.forEach((input) => {
+    // set background color to white
+    input.style.backgroundColor = "white";
+  });
   var matrix = [];
   var track = 0;
   for (let i = 0; i < 9; i++) {
@@ -72,7 +76,9 @@ generateSudukoQuestion.addEventListener("click", () => {
     for (let j = 0; j < 9; j++) {
       var me = Math.floor(Math.random() * 8) + 1; // radnom number between 1 to 9
       if ((me == 3 || me == 2 || me == 1) && !arr.includes(matrix[i][j])) {
-        inputs[k++].value = matrix[i][j];
+        inputs[k].value = matrix[i][j];
+        // set background color
+        inputs[k++].style.backgroundColor = "red";
         arr.push(matrix[i][j]);
       } else {
         inputs[k++].value = "";
