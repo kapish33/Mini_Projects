@@ -32,8 +32,14 @@ const joinValues = () => {
     }
     matrix.push(met);
   }
-  //   console.log(matrix);
   solveSudoku(matrix);
+  console.log(matrix);
+  var k = 0;
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      inputs[k++].value = matrix[i][j];
+    }
+  }
 };
 solveButton.addEventListener("click", joinValues);
 
