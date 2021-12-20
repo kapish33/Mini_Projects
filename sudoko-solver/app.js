@@ -23,6 +23,49 @@ const joinValues = () => {
       submission.push(".");
     }
   });
-  console.log(submission);
+  var matrix = [];
+  var track = 0;
+  for (let i = 0; i < 9; i++) {
+    var met = [];
+    for (let j = 0; j < 9; j++) {
+      met.push(submission[track++]);
+    }
+    matrix.push(met);
+  }
+  //   console.log(matrix);
+  solveSudoku(matrix);
 };
 solveButton.addEventListener("click", joinValues);
+
+const solveSudoku = (g) => {
+  dfs(g);
+};
+
+const dfs = (g) => {
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      if (g[i][j] != ".") continue;
+      for (let c = 1; c <= 9; c++) {
+        if (isValid(g, i, j, c + "")) {
+          g[i][j] = c + "";
+          if (dfs(g)) return true;
+          g[i][j] = ".";
+        }
+      }
+      return false;
+    }
+  }
+  return true;
+};
+
+const int = parseInt;
+const isValid = (g, i, j, val) => {
+  for (let k = 0; k < 9; k++) {
+    if (g[k][j] != "." && g[k][j] == val) return false;
+    if (g[i][k] != "." && g[i][k] == val) return false;
+    let row = int(i / 3) * 3 + int(k / 3);
+    let col = int(j / 3) * 3 + (k % 3);
+    if (g[row][col] != "." && g[row][col] == val) return false;
+  }
+  return true;
+};
