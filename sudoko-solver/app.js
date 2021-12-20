@@ -48,6 +48,10 @@ solveButton.addEventListener("click", joinValues);
 clearButton.addEventListener("click", () => {
   const inputs = document.querySelectorAll("input");
   inputs.forEach((input) => {
+    // set background color to white
+    input.style.backgroundColor = "white";
+  });
+  inputs.forEach((input) => {
     input.value = "";
   });
 });
