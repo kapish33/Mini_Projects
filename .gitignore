@@ -1,4 +1,4 @@
 # ignore node modules
 whatsapp/node_modules/
 whatsapp-web.js/
-session.json
+whatsapp-web.js/session.json
