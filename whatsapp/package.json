@@ -5,14 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon src/server"
+    "server": "nodemon example.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.2",
-    "qrcode-terminal": "^0.12.0",
     "whatsapp-web.js": "^1.15.3"
   }
 }
