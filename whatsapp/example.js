@@ -50,9 +50,9 @@ client.on("ready", () => {
 client.on("message", async (msg) => {
   console.log("MESSAGE RECEIVED", msg);
 
-  if (msg.body === "!ping reply") {
+  if (msg.body === "JaiGurudev") {
     // Send a new message as a reply to the current one
-    msg.reply("pong");
+    msg.reply("JaiGurudev");
   } else if (msg.body === "!ping") {
     // Send a new message to the same chat
     client.sendMessage(msg.from, "pong");
@@ -75,7 +75,7 @@ client.on("message", async (msg) => {
       msg.reply("This command can only be used in a group!");
     }
   } else if (msg.body.startsWith("!echo ")) {
-    // Replies with the same message
+    // Replies with the same message on group as well as personal
     msg.reply(msg.body.slice(6));
   } else if (msg.body.startsWith("!desc ")) {
     // Change the group description
@@ -224,8 +224,8 @@ client.on("message", async (msg) => {
       {
         title: "sectionTitle",
         rows: [
-          { title: "ListItem1", description: "desc" },
-          { title: "ListItem2" },
+          { title: "ListItem1", description: "Desription of ListItem1" },
+          { title: "ListItem2", description: "List @ 2" },
         ],
       },
     ];
