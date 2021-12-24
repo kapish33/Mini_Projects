@@ -242,19 +242,23 @@ client.on("message", async (msg) => {
     }
   } else if (msg.body.trim().toLowerCase() === "AOLhelpline".toLowerCase()) {
     let button = new Buttons(
-      "Select A Program",
+      `ABOUT US 
+      
+We serve society by strengthening the individual Operating in 156 countries,The Art of Living is a non-profit, educational and humanitarian organization founded in 1981 by the world-renowned humanitarian and spiritual teacher - Gurudev Sri Sri Ravi Shankar. 
+
+All our programs are guided by Gurudev’s philosophy: “Unless we have a stress-free mind and a violence-free society, we cannot achieve world peace."
+      
+The Art of Living community is diverse and attracts people from all walks of life. 
+
+To connect with us visit www.artoflivingmeditation.org/lavkesh  
+      `, //main content of the button
       [
-        { body: "Sudarshan kriya" },
-        { body: "Sahaj Samadhi Meditation" },
-        { body: "Free Meditation Session" },
-        { body: "Call assistance" },
+        { body: "Learn Meditation" }, //
+        { body: "Call assistance" }, //
         { body: "Beginners Guide" },
-        { body: "Advanced Meditation Program" },
-        { body: "Wisdom by Gurudev" },
-        { body: "Want to Volunteer" },
       ],
-      "The Art Of Living",
-      "Learn "
+      "Helpline", // headder
+      "Select an option" // fotter
     );
     client.sendMessage(msg.from, button);
   } else if (msg.body === "!list") {
