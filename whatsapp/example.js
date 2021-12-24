@@ -50,9 +50,38 @@ client.on("ready", () => {
 client.on("message", async (msg) => {
   console.log("MESSAGE RECEIVED", msg);
 
-  if (msg.body === "JaiGurudev") {
+  if (msg.body.trim().toLowerCase() === "JaIGurudev".toLowerCase()) {
     // Send a new message as a reply to the current one
     msg.reply("JaiGurudev");
+  } else if (
+    msg.body.trim().toLowerCase() === "Sudarshan kriya".toLowerCase()
+  ) {
+    msg.reply("bit.ly/lavkesh");
+  } else if (
+    msg.body.trim().toLowerCase() === "Sahaj Samadhi Meditation".toLowerCase()
+  ) {
+    msg.reply("bit.ly/lavkesh");
+  } else if (
+    msg.body.trim().toLowerCase() === "Free Meditation Session".toLowerCase()
+  ) {
+    msg.reply("bit.ly/lavkesh");
+  } else if (
+    msg.body.trim().toLowerCase() === "Call assistance".toLowerCase()
+  ) {
+    msg.reply("bit.ly/lavkesh");
+  } else if (
+    msg.body.trim().toLowerCase() ===
+    "Advanced Meditation Program".toLowerCase()
+  ) {
+    msg.reply("bit.ly/lavkesh");
+  } else if (
+    msg.body.trim().toLowerCase() === "Wisdom by Gurudev".toLowerCase()
+  ) {
+    msg.reply("bit.ly/lavkesh");
+  } else if (
+    msg.body.trim().toLowerCase() === "Want to Volunteer".toLowerCase()
+  ) {
+    msg.reply("bit.ly/lavkesh");
   } else if (msg.body === "!ping") {
     // Send a new message to the same chat
     client.sendMessage(msg.from, "pong");
@@ -211,12 +240,21 @@ client.on("message", async (msg) => {
       const quotedMsg = await msg.getQuotedMessage();
       client.interface.openChatWindowAt(quotedMsg.id._serialized);
     }
-  } else if (msg.body === "!buttons") {
+  } else if (msg.body.trim().toLowerCase() === "AOLhelpline".toLowerCase()) {
     let button = new Buttons(
-      "Button body",
-      [{ body: "bt1" }, { body: "bt2" }, { body: "bt3" }],
-      "title",
-      "footer"
+      "Select A Program",
+      [
+        { body: "Sudarshan kriya" },
+        { body: "Sahaj Samadhi Meditation" },
+        { body: "Free Meditation Session" },
+        { body: "Call assistance" },
+        { body: "Beginners Guide" },
+        { body: "Advanced Meditation Program" },
+        { body: "Wisdom by Gurudev" },
+        { body: "Want to Volunteer" },
+      ],
+      "The Art Of Living",
+      "Learn "
     );
     client.sendMessage(msg.from, button);
   } else if (msg.body === "!list") {
