@@ -1,4 +1,28 @@
 const fs = require("fs");
+
+// line 3 to 20 is for import numbers from csv file
+const csvFilePath = "./Sheet1.csv"; // this is for import only
+const csv = require("csvtojson");
+let numbers = [];
+let setNumbers = []; //user can set numbers
+csv()
+  .fromFile(csvFilePath)
+  .then((jsonObj) => {
+    console.log(jsonObj);
+    for (let i = 0; i < jsonObj.length; i++) {
+      let number = jsonObj[i]["Name"];
+      //   remove + sumbole if exists in string
+      if (number.includes("+")) {
+        number = number.replace("+", "");
+      }
+      // if not contains 91 in strating then add 91
+      if (!number.startsWith("91")) {
+        number = "91" + number;
+      }
+      numbers.push(number);
+    }
+    console.log(numbers);
+  });
 const { Client, Location, List, Buttons } = require("whatsapp-web.js");
 
 const SESSION_FILE_PATH = "./session.json";
@@ -94,6 +118,7 @@ client.on("message", async (msg) => {
     let chat = await msg.getChat();
     chat.sendSeen();
     client.sendMessage(number, message);
+    // exmple message - !sendto 987654321 Hello World
   } else if (msg.body.startsWith("!subject ")) {
     // Change the group subject
     let chat = await msg.getChat();
@@ -273,6 +298,77 @@ To connect with us visit www.artoflivingmeditation.org/lavkesh
     ];
     let list = new List("List body", "btnText", sections, "Title", "footer");
     client.sendMessage(msg.from, list);
+  } else if (msg.body.startsWith("!sendMsg ")) {
+    // take everythign after the first space
+    const indexofmessage = msg.body.indexOf(" ");
+    const message = msg.body.substring(indexofmessage + 1);
+    // let number = msg.body.split(" ")[1];
+    for (let i = 0; i < numbers.length; i++) {
+      let number = numbers[i];
+      number = number.includes("@c.us") ? number : `${number}@c.us`;
+      let chat = await msg.getChat();
+      // attach a media to the message
+      let attachmentData = await msg.downloadMedia();
+
+      chat.sendSeen();
+      client.sendMessage(number, attachmentData, {
+        caption: `${message}`,
+      });
+    }
+  } else if (msg.body.startsWith("!setNumbers")) {
+    // if setNumber is empty then empty that
+    if (setNumbers.length > 0) {
+      setNumbers = []; // if numbers aready exist then empty that
+    }
+    // remove !setNumbers
+    value = msg.body;
+    value = value.replace("!setNumbers", "");
+    // seplit by new line
+    let lines = value.trim().split("\n");
+    // if lines doen't conatin 91 then add 91
+    for (let i = 0; i < lines.length; i++) {
+      let number = lines[i];
+      if (!number.startsWith("91")) {
+        number = "91" + number;
+      }
+      setNumbers.push(number);
+    }
+    // if lines contains + then remove it
+    for (let i = 0; i < setNumbers.length; i++) {
+      let number = setNumbers[i];
+      if (number.includes("+")) {
+        number = number.replace("+", "");
+      }
+      setNumbers[i] = number;
+    }
+    //set numberts to a string for sending only
+    // add senders number to the list
+    setNumbers.push(msg.from.replace("@c.us", ""));
+    let numbersString = "" + msg.from.replace("@c.us", "");
+    numbersString += "your provided numbers are: \n";
+    for (let i = 0; i < setNumbers.length; i++) {
+      numbersString += setNumbers[i] + "\n";
+    }
+    msg.reply(numbersString);
+  }
+  // send message of the setNumbers
+  else if (msg.body.startsWith("!sendMyAttachText ")) {
+    // take everythign after the first space
+    const indexofmessage = msg.body.indexOf(" ");
+    const message = msg.body.substring(indexofmessage + 1);
+    // let number = msg.body.split(" ")[1];
+    for (let i = 0; i < setNumbers.length; i++) {
+      let number = setNumbers[i];
+      number = number.includes("@c.us") ? number : `${number}@c.us`;
+      let chat = await msg.getChat();
+      // attach a media to the message
+      let attachmentData = await msg.downloadMedia();
+      chat.sendSeen();
+      client.sendMessage(number, attachmentData, {
+        caption: `${message}`,
+      });
+      // client.sendMessage(number, attachmentData,{}, "message");
+    }
   }
 });
 
