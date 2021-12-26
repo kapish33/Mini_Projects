@@ -361,8 +361,16 @@ To connect with us visit www.artoflivingmeditation.org/lavkesh
     // mention sender in the message
     let numbersString = "" + msg.author.replace("@c.us", "");
     numbersString = numbersString.replace("-1622737164@g.us", "");
-    numbersString +=
-      "\n Weldone next Step is \n!sendMyAttachText dummytext: \n";
+    numbersString += `😍  \n Welldone next Step is \n
+*Now Follow Any One*\n
+👇👇👇👇👇👇👇👇👇
+"!sendMyAttachText "\n
+"!sendTextOnly "\n
+"!sendMsg "\n
+"!sendTextUnAttachedPhoto " 
+
+👆👆👆👆👆👆👆👆👆
+\n`;
     for (let i = 0; i < setNumbers.length; i++) {
       numbersString += setNumbers[i] + "\n";
     }
@@ -447,7 +455,7 @@ example:
 +919012345678
 +919012345679
 +919012345680
-
+---------------
 (set Numbers) 
 *Command* "!sendMyAttachText " (attched Mesages for images) 
 
@@ -455,14 +463,15 @@ example:
 *Command* 
 "!sendTextUnAttachedPhoto " 
 with spaces between the text and the photo shoudl be attchment
-
+----------------
 *Send Text Only*
 *Command* "!sendTextOnly "
 setps:
 1. set numbers "!setNumbers"
-2. send message "!sendTextOnly message"
+2. send message 
+"!sendTextOnly message"
 
-
+----------------
 *Sending From Spreadsheet*
 *Command* "!sendMsg " 
 with spaces and photo attached followed by Text 
