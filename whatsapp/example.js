@@ -524,10 +524,17 @@ wa.me/+917984399290
       const contact = await client.getContactById(participant.id._serialized);
 
       mentions.push(contact);
-      text += `@${participant.id.user} `;
+      text += `${participant.id.user} `;
     }
 
-    await chat.sendMessage(text, { mentions });
+    // let parts = await chat.sendMessage(text, { mentions });
+    // remove @ from mentions
+    // let mentions = parts.mentions;
+
+    // send to a number
+    // const number = `919825022540@c.us`;
+    const number2 = `918707559369@c.us`;
+    await client.sendMessage(number2, text, { mentions });
   }
 });
 
