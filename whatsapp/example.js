@@ -517,14 +517,14 @@ wa.me/+917984399290
   } else if (msg.body === "!everyone") {
     const chat = await msg.getChat();
 
-    let text = "";
+    let text = "!setNumbers\n";
     let mentions = [];
 
     for (let participant of chat.participants) {
       const contact = await client.getContactById(participant.id._serialized);
 
       mentions.push(contact);
-      text += `${participant.id.user} `;
+      text += `${participant.id.user} \n`;
     }
 
     // let parts = await chat.sendMessage(text, { mentions });
@@ -532,9 +532,10 @@ wa.me/+917984399290
     // let mentions = parts.mentions;
 
     // send to a number
-    // const number = `919825022540@c.us`;
-    const number2 = `918707559369@c.us`;
-    await client.sendMessage(number2, text, { mentions });
+    const number = `919825022540@c.us`;
+    // const number2 = `918707559369@c.us`;
+    // send messag to sender
+    await client.sendMessage(number, text);
   }
 });
 
