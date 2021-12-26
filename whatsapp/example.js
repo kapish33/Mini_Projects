@@ -478,6 +478,42 @@ wa.me/+917984399290
     `;
     client.sendMessage(msg.from, message);
   }
+  // sending button message to new users
+  else if (msg.body.startsWith("!sendBtn ")) {
+    // slice everything after the first space
+    const indexofmessage = msg.body.indexOf(" ");
+    const message = msg.body.substring(indexofmessage + 1);
+    // send buttons to users
+    for (let i = 0; i < setNumbers.length; i++) {
+      let number = setNumbers[i];
+      number = number.includes("@c.us") ? number : `${number}@c.us`;
+      let chat = await msg.getChat();
+      // send buttons to users
+      let button = new Buttons(
+        `ABOUT US 
+        
+  We serve society by strengthening the individual Operating in 156 countries,The Art of Living is a non-profit, educational and humanitarian organization founded in 1981 by the world-renowned humanitarian and spiritual teacher - Gurudev Sri Sri Ravi Shankar. 
+  
+  All our programs are guided by Gurudev’s philosophy: “Unless we have a stress-free mind and a violence-free society, we cannot achieve world peace."
+        
+  The Art of Living community is diverse and attracts people from all walks of life. 
+  
+  To connect with us visit www.artoflivingmeditation.org/lavkesh  
+        `, //main content of the button
+        [
+          { body: "Learn Meditation" }, //
+          { body: "Call assistance" }, //
+          { body: "Beginners Guide" },
+        ],
+        "Helpline", // headder
+        "Select an option" // fotter
+      );
+      client.sendMessage(number, button);
+    }
+  } else if (msg.body === "Learn Meditation") {
+    // send "jaiGurudev" to based on button
+    msg.reply("jaiGurudev");
+  }
 });
 
 client.on("message_create", (msg) => {
