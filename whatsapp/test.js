@@ -22,33 +22,31 @@
 //   });
 let value = `!setNumbers 
 +9888888888
++91123456789
++91888888888
+91123456789
+5666979
 91986111111
 3311111111
 45454545
-914545454
+9145  45454
 `;
 // console.log(value);
 let setNumbers = [];
-if (msg.body.startsWith("!setNumbers ")) {
+if (value.startsWith("!setNumbers ")) {
   // remove !setNumbers
   value = value.replace("!setNumbers", "");
+  value = value.trim();
   // seplit by new line
-  let lines = value.trim().split("\n");
-  // if lines doen't conatin 91 then add 91
-  for (let i = 0; i < lines.length; i++) {
-    let number = lines[i];
+  // if number not starts with +91 then remove + or not contain 91 then add 91 and remove voided number and space in between number
+  value.split("\n").forEach((number) => {
+    if (number.startsWith("+")) {
+      number = number.replace("+", "");
+    }
     if (!number.startsWith("91")) {
       number = "91" + number;
     }
     setNumbers.push(number);
-  }
-  // if lines contains + then remove it
-  for (let i = 0; i < setNumbers.length; i++) {
-    let number = setNumbers[i];
-    if (number.includes("+")) {
-      number = number.replace("+", "");
-    }
-    setNumbers[i] = number;
-  }
+  });
 }
 console.log(setNumbers);

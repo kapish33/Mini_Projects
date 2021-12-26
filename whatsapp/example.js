@@ -326,26 +326,43 @@ To connect with us visit www.artoflivingmeditation.org/lavkesh
     // seplit by new line
     let lines = value.trim().split("\n");
     // if lines doen't conatin 91 then add 91
-    for (let i = 0; i < lines.length; i++) {
-      let number = lines[i];
+    // for (let i = 0; i < lines.length; i++) {
+    //   let number = lines[i];
+    //   if (!number.startsWith("91")) {
+    //     number = "91" + number;
+    //   }
+    //   setNumbers.push(number);
+    // }
+    // // if lines contains + then remove it
+    // for (let i = 0; i < setNumbers.length; i++) {
+    //   let number = setNumbers[i];
+    //   if (number.includes("+")) {
+    //     number = number.replace("+", "");
+    //   }
+    //   setNumbers[i] = number;
+    // }
+    lines.forEach((number) => {
+      if (number.startsWith("+")) {
+        number = number.replace("+", "");
+      }
       if (!number.startsWith("91")) {
         number = "91" + number;
       }
       setNumbers.push(number);
-    }
-    // if lines contains + then remove it
-    for (let i = 0; i < setNumbers.length; i++) {
-      let number = setNumbers[i];
-      if (number.includes("+")) {
-        number = number.replace("+", "");
-      }
-      setNumbers[i] = number;
-    }
+    });
     //set numberts to a string for sending only
     // add senders number to the list
-    setNumbers.push(msg.from.replace("@c.us", ""));
-    let numbersString = "" + msg.from.replace("@c.us", "");
-    numbersString += "your provided numbers are: \n";
+    // if msg.from contains "@c.us"  or -1622737164@g.us then reomove this -1622737164@g.us or @c.us
+    let author = msg.author.replace("@c.us", "");
+    // let pusher = msg.from.endsWith("@c.us")
+    //   ? msg.from.replace("@c.us", "")
+    //   : msg.from.replace("-1622737164@g.us", "");
+    setNumbers.push(author);
+    // mention sender in the message
+    let numbersString = "" + msg.author.replace("@c.us", "");
+    numbersString = numbersString.replace("-1622737164@g.us", "");
+    numbersString +=
+      "\n Weldone next Step is \n!sendMyAttachText dummytext: \n";
     for (let i = 0; i < setNumbers.length; i++) {
       numbersString += setNumbers[i] + "\n";
     }
@@ -364,11 +381,99 @@ To connect with us visit www.artoflivingmeditation.org/lavkesh
       // attach a media to the message
       let attachmentData = await msg.downloadMedia();
       chat.sendSeen();
-      client.sendMessage(number, attachmentData, {
-        caption: `${message}`,
-      });
+      // random number between 500 to 1500
+      let randomNumber = Math.floor(Math.random() * (1500 - 500 + 1)) + 500;
+      // send message with settimeout
+      setTimeout(() => {
+        client.sendMessage(number, attachmentData, {
+          caption: `${message}`,
+        });
+      }, randomNumber);
+      // client.sendMessage(number, attachmentData, {
+      //   caption: `${message}`,
+      // });
       // client.sendMessage(number, attachmentData,{}, "message");
     }
+  } else if (msg.body.toLocaleLowerCase() === "AmIOnline".toLocaleLowerCase()) {
+    msg.reply("Yes");
+  }
+  // if user want to send text message to multiple numbers
+  else if (msg.body.startsWith("!sendTextUnAttachedPhoto ")) {
+    // take everythign after the first space
+    const indexofmessage = msg.body.indexOf(" ");
+    const message = msg.body.substring(indexofmessage + 1);
+    // send Messages to set numbers
+    for (let i = 0; i < setNumbers.length; i++) {
+      let number = setNumbers[i];
+      number = number.includes("@c.us") ? number : `${number}@c.us`;
+      let chat = await msg.getChat();
+      // attach a media to the message
+      let attachmentData = await msg.downloadMedia();
+      chat.sendSeen();
+      // random number between 500 to 1500
+      let randomNumber = Math.floor(Math.random() * (1500 - 500 + 1)) + 500;
+      // send message with settimeout
+      setTimeout(() => {
+        // send photo
+        client.sendMessage(number, attachmentData, {
+          caption: `${""}`,
+        });
+        // set timeout for sending message
+        setTimeout(() => {
+          // send message
+          client.sendMessage(number, message);
+          // client.sendMessage(number, message);
+        }, randomNumber);
+      }, randomNumber);
+    }
+  } else if (msg.body.startsWith("!sendTextOnly ")) {
+    // take everythign after the first space
+    const indexofmessage = msg.body.indexOf(" ");
+    const message = msg.body.substring(indexofmessage + 1);
+    // send Messages to set numbers
+    for (let i = 0; i < setNumbers.length; i++) {
+      let number = setNumbers[i];
+      number = number.includes("@c.us") ? number : `${number}@c.us`;
+      let chat = await msg.getChat();
+      // sendmessages to set numbers
+      client.sendMessage(number, message);
+    }
+  } else if (msg.body.toLocaleLowerCase() === "!help".toLocaleLowerCase()) {
+    let message = `
+*for sending messages to multiple numbers*
+*Command* "!setNumbers" No Space
+example:
+!setNumbers
++919012345678
++919012345679
++919012345680
+
+(set Numbers) 
+*Command* "!sendMyAttachText " (attched Mesages for images) 
+
+*send Message Without Attachemnts*
+*Command* 
+"!sendTextUnAttachedPhoto " 
+with spaces between the text and the photo shoudl be attchment
+
+*Send Text Only*
+*Command* "!sendTextOnly "
+setps:
+1. set numbers "!setNumbers"
+2. send message "!sendTextOnly message"
+
+
+*Sending From Spreadsheet*
+*Command* "!sendMsg " 
+with spaces and photo attached followed by Text 
+Applicable for CSV (Beta Mode Available)
+(Stable Mode For Me Only : ))
+
+
+
+wa.me/+917984399290
+    `;
+    client.sendMessage(msg.from, message);
   }
 });
 
@@ -411,13 +516,13 @@ client.on("message_ack", (msg, ack) => {
 client.on("group_join", (notification) => {
   // User has joined or been added to the group.
   console.log("join", notification);
-  notification.reply("User joined.");
+  // notification.reply("User joined.");
 });
 
 client.on("group_leave", (notification) => {
   // User has left or been kicked from the group.
   console.log("leave", notification);
-  notification.reply("User left.");
+  // notification.reply("User left.");
 });
 
 client.on("group_update", (notification) => {
