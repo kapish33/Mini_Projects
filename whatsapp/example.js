@@ -510,9 +510,24 @@ wa.me/+917984399290
       );
       client.sendMessage(number, button);
     }
-  } else if (msg.body === "Learn Meditation") {
-    // send "jaiGurudev" to based on button
-    msg.reply("jaiGurudev");
+  } else if (msg.body === "gettallGroups") {
+    // get names of all groups
+    let groups = await client.getGroups();
+    msg.reply("waiting");
+  } else if (msg.body === "!everyone") {
+    const chat = await msg.getChat();
+
+    let text = "";
+    let mentions = [];
+
+    for (let participant of chat.participants) {
+      const contact = await client.getContactById(participant.id._serialized);
+
+      mentions.push(contact);
+      text += `@${participant.id.user} `;
+    }
+
+    await chat.sendMessage(text, { mentions });
   }
 });
 
