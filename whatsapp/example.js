@@ -325,22 +325,6 @@ To connect with us visit www.artoflivingmeditation.org/lavkesh
     value = value.replace("!setNumbers", "");
     // seplit by new line
     let lines = value.trim().split("\n");
-    // if lines doen't conatin 91 then add 91
-    // for (let i = 0; i < lines.length; i++) {
-    //   let number = lines[i];
-    //   if (!number.startsWith("91")) {
-    //     number = "91" + number;
-    //   }
-    //   setNumbers.push(number);
-    // }
-    // // if lines contains + then remove it
-    // for (let i = 0; i < setNumbers.length; i++) {
-    //   let number = setNumbers[i];
-    //   if (number.includes("+")) {
-    //     number = number.replace("+", "");
-    //   }
-    //   setNumbers[i] = number;
-    // }
     lines.forEach((number) => {
       if (number.startsWith("+")) {
         number = number.replace("+", "");
