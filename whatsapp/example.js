@@ -337,13 +337,23 @@ To connect with us visit www.artoflivingmeditation.org/lavkesh
     //set numberts to a string for sending only
     // add senders number to the list
     // if msg.from contains "@c.us"  or -1622737164@g.us then reomove this -1622737164@g.us or @c.us
-    let author = msg.author.replace("@c.us", "");
+    // if message is in group then add sender number to the list
+
+    // let author = msg.author.replace("@c.us", "");
+    let author = msg.from
+      ? msg.from.replace("@c.us", "")
+      : msg.author.replace("@c.us", "");
+
     // let pusher = msg.from.endsWith("@c.us")
     //   ? msg.from.replace("@c.us", "")
     //   : msg.from.replace("-1622737164@g.us", "");
+    // if author contains -1622737164@g.us then remove this
+    if (author.endsWith("-1622737164@g.us")) {
+      author = author.replace("-1622737164@g.us", "");
+    }
     setNumbers.push(author);
     // mention sender in the message
-    let numbersString = "" + msg.author.replace("@c.us", "");
+    let numbersString = "" + author;
     numbersString = numbersString.replace("-1622737164@g.us", "");
     numbersString += `😍  \n Welldone next Step is \n
 *Now Follow Any One*\n
