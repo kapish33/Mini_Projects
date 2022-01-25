@@ -544,7 +544,7 @@ Click *Yes* below  to get a call back from our experts to know more`, //main con
       client.sendMessage(number, button);
     }
   } else if (msg.body === "gettallGroups") {
-    // get names of all groups
+    // get names of all groupss
     let groups = await client.getGroups();
     msg.reply("waiting");
   } else if (msg.body === "!everyone") {
