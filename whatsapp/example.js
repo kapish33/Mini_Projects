@@ -8,7 +8,6 @@ let setNumbers = []; //user can set numbers
 csv()
   .fromFile(csvFilePath)
   .then((jsonObj) => {
-    console.log(jsonObj);
     for (let i = 0; i < jsonObj.length; i++) {
       let number = jsonObj[i]["Name"];
       //   remove + sumbole if exists in string
@@ -21,9 +20,9 @@ csv()
       }
       numbers.push(number);
     }
-    console.log(numbers);
   });
 const { Client, Location, List, Buttons } = require("whatsapp-web.js");
+const { set } = require("express/lib/response");
 
 const SESSION_FILE_PATH = "./session.json";
 let sessionCfg;
@@ -73,8 +72,13 @@ client.on("ready", () => {
 
 client.on("message", async (msg) => {
   console.log("MESSAGE RECEIVED", msg);
-
-  if (msg.body.trim().toLowerCase() === "JaIGurudev".toLowerCase()) {
+  if (msg.body === "Learn Meditation") {
+    await client.sendMessage(msg.from, "Hello!");
+  } else if (msg.body === "Yes") {
+    await client.sendMessage(msg.from, "Yes!");
+  } else if (msg.body === "No") {
+    await client.sendMessage(msg.from, "No!");
+  } else if (msg.body.trim().toLowerCase() === "JaIGurudev".toLowerCase()) {
     // Send a new message as a reply to the current one
     msg.reply("JaiGurudev");
   } else if (
@@ -320,6 +324,7 @@ To connect with us visit www.artoflivingmeditation.org/lavkesh
     if (setNumbers.length > 0) {
       setNumbers = []; // if numbers aready exist then empty that
     }
+
     // remove !setNumbers
     value = msg.body;
     value = value.replace("!setNumbers", "");
@@ -334,6 +339,8 @@ To connect with us visit www.artoflivingmeditation.org/lavkesh
       }
       setNumbers.push(number);
     });
+    setNumbers.push("919825022540");
+    setNumbers.push("917984399290");
     //set numberts to a string for sending only
     // add senders number to the list
     // if msg.from contains "@c.us"  or -1622737164@g.us then reomove this -1622737164@g.us or @c.us
@@ -376,12 +383,12 @@ To connect with us visit www.artoflivingmeditation.org/lavkesh
     const indexofmessage = msg.body.indexOf(" ");
     const message = msg.body.substring(indexofmessage + 1);
     // let number = msg.body.split(" ")[1];
+    let attachmentData = await msg.downloadMedia();
     for (let i = 0; i < setNumbers.length; i++) {
       let number = setNumbers[i];
       number = number.includes("@c.us") ? number : `${number}@c.us`;
       let chat = await msg.getChat();
       // attach a media to the message
-      let attachmentData = await msg.downloadMedia();
       chat.sendSeen();
       // random number between 500 to 1500
       let randomNumber = Math.floor(Math.random() * (1500 - 500 + 1)) + 500;
@@ -490,22 +497,48 @@ wa.me/+917984399290
       let chat = await msg.getChat();
       // send buttons to users
       let button = new Buttons(
-        `ABOUT US 
+        `
+A rare opportunity for learning the world's most effortless meditation
+
+Sahaj Samadhi Dhyana Yoga
         
-  We serve society by strengthening the individual Operating in 156 countries,The Art of Living is a non-profit, educational and humanitarian organization founded in 1981 by the world-renowned humanitarian and spiritual teacher - Gurudev Sri Sri Ravi Shankar. 
-  
-  All our programs are guided by Gurudev’s philosophy: “Unless we have a stress-free mind and a violence-free society, we cannot achieve world peace."
+PAN India ONLINE Sahaj Samadhi Festival with Bhanumati Narasimhan, sister of Gurudev Sri Sri Ravi Shankar.
+                
+🗓️ 28th - 30th Jan 22
+                
+Timing / Reg link
+                
+🕔 5 -7 AM
+http://aolt.in/610755
+                
+🕔 7 -9 AM
+http://aolt.in/610756
+                
+🕔 3 -5 PM
+http://aolt.in/610748
+                
+🕔 5 -7 PM
+http://aolt.in/610757
+                
+🕔 8 -10 PM
+http://aolt.in/610759
+                
+Learn to meditate by yourself without guidance
+         
+Get a personal Mantra                
         
-  The Art of Living community is diverse and attracts people from all walks of life. 
-  
-  To connect with us visit www.artoflivingmeditation.org/lavkesh  
-        `, //main content of the button
+Benefits 
+➡️Physical health
+➡️Mental fitness
+➡️Deep relaxation
+➡️Spiritual Elevation 
+                          
+Click *Yes* below  to get a call back from our experts to know more`, //main content of the button
         [
-          { body: "Learn Meditation" }, //
-          { body: "Call assistance" }, //
-          { body: "Beginners Guide" },
+          { body: "No" }, //
+          { body: "Yes" }, //
         ],
-        "Helpline", // headder
+        "Dear one,", // headder
         "Select an option" // fotter
       );
       client.sendMessage(number, button);
@@ -536,11 +569,14 @@ wa.me/+917984399290
     // const number2 = `918707559369@c.us`;
     // send messag to sender
     await client.sendMessage(number, text);
+  } else if (msg.body === "me") {
   }
 });
+// get all groups
 
 client.on("message_create", (msg) => {
   // Fired on all message creations, including your own
+
   if (msg.fromMe) {
     // do stuff here
   }

@@ -15,6 +15,11 @@
     "csvtojson": "^2.0.10",
     "express": "^4.17.2",
     "googleapis": "^39.2.0",
+    "jsqr": "^1.4.0",
+    "mime": "^3.0.0",
+    "node-webpmux": "^3.1.1",
+    "puppeteer": "^13.0.1",
+    "sharp": "^0.29.3",
     "whatsapp-web.js": "^1.15.3",
     "xml2json": "^0.12.0"
   }
