@@ -74,10 +74,24 @@ client.on("message", async (msg) => {
   console.log("MESSAGE RECEIVED", msg);
   if (msg.body === "Learn Meditation") {
     await client.sendMessage(msg.from, "Hello!");
+    // send message to a perticular number
   } else if (msg.body === "Yes") {
-    await client.sendMessage(msg.from, "Yes!");
+    await client.sendMessage(
+      msg.from,
+      `Thanks For Your Response. We will contact you soon.`
+    );
+    const adminNo = "919825022540@c.us";
+    const msgfrom = msg.from;
+    const msgfromNo = msgfrom.replace("@c.us", "");
+    await client.sendMessage(
+      adminNo,
+      `call on : +${msgfromNo}
+      wa.me/+${msgfromNo} Is Intersted in meditation`
+    );
   } else if (msg.body === "No") {
-    await client.sendMessage(msg.from, "No!");
+    await client.sendMessage(msg.from, "Ok! Noted");
+    const adminNo = "919825022540@c.us";
+    await client.sendMessage(adminNo, "Not intrested!");
   } else if (msg.body.trim().toLowerCase() === "JaIGurudev".toLowerCase()) {
     // Send a new message as a reply to the current one
     msg.reply("JaiGurudev");
@@ -497,35 +511,32 @@ wa.me/+917984399290
       let chat = await msg.getChat();
       // send buttons to users
       let button = new Buttons(
-        `
-A rare opportunity for learning the world's most effortless meditation
+        `Learn the world's most effortless meditation
 
-Sahaj Samadhi Dhyana Yoga
+*Sahaj Samadhi Dhyana Yoga*
         
-PAN India ONLINE Sahaj Samadhi Festival with Bhanumati Narasimhan, sister of Gurudev Sri Sri Ravi Shankar.
+PAN India ONLINE Sahaj Samadhi Festival with *Bhanumati Narasimhan*, sister of *Gurudev Sri Sri Ravi Shankar*
                 
-🗓️ 28th - 30th Jan 22
+🗓️ 28 - 30 Jan 22
                 
-Timing / Reg link
+Timing
                 
 🕔 5 -7 AM
-http://aolt.in/610755
+aolt.in/610755
                 
 🕔 7 -9 AM
-http://aolt.in/610756
+aolt.in/610756
                 
 🕔 3 -5 PM
-http://aolt.in/610748
+aolt.in/610748
                 
 🕔 5 -7 PM
-http://aolt.in/610757
+aolt.in/610757
                 
 🕔 8 -10 PM
-http://aolt.in/610759
-                
-Learn to meditate by yourself without guidance
-         
-Get a personal Mantra                
+aolt.in/610759
+                       
+Get a personal Mantra & meditate by yourself without guidance           
         
 Benefits 
 ➡️Physical health
@@ -533,7 +544,8 @@ Benefits
 ➡️Deep relaxation
 ➡️Spiritual Elevation 
                           
-Click *Yes* below  to get a call back from our experts to know more`, //main content of the button
+Click Yes below  to get a call back from our experts to know more
+`, //main content of the button
         [
           { body: "No" }, //
           { body: "Yes" }, //
