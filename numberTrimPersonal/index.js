@@ -9,6 +9,9 @@ text.addEventListener("keyup", function (e) {
   const textArray = text.value.split("\n");
 
   const textArrayClean = textArray.map((element) => {
+    // if element is empty return "";
+    if (element === "") return "";
+
     // remove all voide spaces in element
     return element.replace(/\s+/g, "");
   });
