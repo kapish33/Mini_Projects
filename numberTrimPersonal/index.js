@@ -12,9 +12,12 @@ text.addEventListener("keyup", function (e) {
     // remove all voide spaces in element
     return element.replace(/\s+/g, "");
   });
+  // make set of unique values from textArrayClean
+  const uniqueValues = new Set(textArrayClean);
+
   let optext = "";
   // loop through array
-  textArrayClean.forEach((element) => {
+  uniqueValues.forEach((element) => {
     optext += `${element}\n`;
   });
 
