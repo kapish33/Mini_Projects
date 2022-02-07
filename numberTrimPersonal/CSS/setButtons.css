@@ -39,3 +39,12 @@ button {
   margin-left: 50%;
   transform: translateX(-50%);
 }
+button:hover {
+  background-color: rgb(97, 197, 15);
+  color: rgb(250, 250, 250);
+  border-radius: 25px;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.1s ease;
+}
