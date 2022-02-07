@@ -23,10 +23,17 @@ input {
   cursor: pointer;
   margin: 2px;
 }
-.answer {
-  height: 24px;
-  background-color: green;
-}
-.direction {
-  height: 24px;
+button {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: rgb(115, 240, 13);
+  font-size: 1.5em;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  color: rgb(250, 250, 250);
+  text-align: center;
+  cursor: pointer;
+  margin: 1%;
+  padding: 1%;
 }

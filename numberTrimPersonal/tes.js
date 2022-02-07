@@ -4,6 +4,7 @@
     { body: "Yes" },
 ]
 */
+
 let text = `!setOptions {key1: value1},{key2: value2}`;
 // !setOptions to "";
 let options = text
