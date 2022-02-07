@@ -33,3 +33,30 @@ body {
   -o-animation: alternate;
   animation: alternate;
 }
+/* media query for small devices */
+@media screen and (max-width: 600px) {
+  .container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .container a {
+    text-decoration: none;
+    color: rgb(165, 24, 24);
+    border: 1px solid rgb(165, 24, 24);
+    padding: 2% 20%;
+    border-radius: 25px;
+    margin: 4%;
+  }
+  .container a:hover {
+    background-color: rgb(165, 24, 24);
+    color: white;
+    -moz-animation: alternate;
+    -webkit-animation: alternate;
+    -o-animation: alternate;
+    animation: alternate;
+  }
+}
