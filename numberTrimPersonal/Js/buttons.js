@@ -1,22 +1,22 @@
 const buttons = document.querySelector(".button");
 
 buttons.onclick = function () {
-  const fisrtKey = document.querySelector("#fisrtKey").value;
+  // const fisrtKey = document.querySelector("#fisrtKey").value;
   const firtsValue = document.querySelector("#firtsValue").value;
-  const secondKey = document.querySelector("#secondKey").value;
+  // const secondKey = document.querySelector("#secondKey").value;
   const secondValue = document.querySelector("#secondValue").value;
-  const thirdKet = document.querySelector("#thirdKet").value;
+  // const thirdKet = document.querySelector("#thirdKet").value;
   const thirdValue = document.querySelector("#thirdValue").value;
 
   const array = [];
-  if (fisrtKey && firtsValue) {
-    array.push({ [fisrtKey]: firtsValue });
+  if (firtsValue) {
+    array.push({ body: firtsValue });
   }
-  if (secondKey && secondValue) {
-    array.push({ [secondKey]: secondValue });
+  if (secondValue) {
+    array.push({ body: secondValue });
   }
-  if (thirdKet && thirdValue) {
-    array.push({ [thirdKet]: thirdValue });
+  if (thirdValue) {
+    array.push({ body: thirdValue });
   }
   let str = "!setOptions ";
   for (let i = 0; i < array.length; i++) {
