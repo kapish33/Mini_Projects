@@ -28,7 +28,17 @@ const handelfunction = () => {
         const res = JSON.parse(result);
         if (res.message) alert("Command Already Exists");
         else alert("Command Added");
+        // copy key to clipboard
+        copyToClipboard(key);
       })
       .catch((error) => console.log("error", error));
   }
 };
+function copyToClipboard(text) {
+  var textArea = document.createElement("textarea");
+  textArea.value = text;
+  document.body.appendChild(textArea);
+  textArea.select();
+  document.execCommand("copy");
+  textArea.remove();
+}
