@@ -37,4 +37,6 @@ buttons.onclick = function () {
   document.execCommand("copy");
   document.body.removeChild(el);
   alert("Copied to clipboard");
+  // redirect to the main page
+  window.location.href = "https://wa.me/+917984399290";
 };
