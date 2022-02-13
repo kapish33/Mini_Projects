@@ -27,6 +27,10 @@ const sendData = () => {
     fetch("https://whatsappmeserver.herokuapp.com/users", requestOptions)
       .then((response) => response.text())
       .then((result) => alert("Successfully registered"))
+      .then(() => {
+        window.location.href =
+          "https://wa.me/+917722007808?text=Am%I%Regestred";
+      })
       .catch((error) => alert("Something went wrong"));
   }
 };
