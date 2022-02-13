@@ -5,6 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Message Creration</title>
+    <link rel="stylesheet" href="../CSS/MessageCraetion.css" />
   </head>
-  <body></body>
+  <body>
+    <form>
+      <textarea
+        name=""
+        id="inputMessage"
+        placeholder="Type Your Message Here"
+      ></textarea>
+      <input
+        onclick="handelfunction('!sendTextUnAttachedPhoto')"
+        type="button"
+        value="!sendTextUnAttachedPhoto"
+      />
+      <input
+        onclick="handelfunction('!sendTextOnly')"
+        type="button"
+        value="!sendTextOnly"
+      />
+      <input
+        onclick="handelfunction('!sendMyAttachText')"
+        type="button"
+        value="!sendMyAttachText"
+      />
+      <input
+        onclick="handelfunction('!sendBtn')"
+        type="button"
+        value="!sendBtn"
+      />
+    </form>
+  </body>
+  <script src="../Js/MessageCraetion.js"></script>
 </html>
