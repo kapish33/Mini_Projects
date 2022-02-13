@@ -29,7 +29,7 @@ const sendData = () => {
       .then((result) => alert("Successfully registered"))
       .then(() => {
         window.location.href =
-          "https://wa.me/+917722007808?text=Am%20I%20Regestred";
+          "https://wa.me/+917984399290?text=Am%20I%20Regestred";
       })
       .catch((error) => alert("Something went wrong"));
   }
