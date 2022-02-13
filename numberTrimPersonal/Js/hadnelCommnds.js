@@ -11,8 +11,8 @@ const handelfunction = () => {
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
-      key: key,
-      value: reply,
+      key: key.trim(),
+      value: reply.trim(),
     });
 
     var requestOptions = {
