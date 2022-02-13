@@ -26,8 +26,8 @@ const sendData = () => {
 
     fetch("https://whatsappmeserver.herokuapp.com/users", requestOptions)
       .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log("error", error));
+      .then((result) => alert("Successfully registered"))
+      .catch((error) => alert("Something went wrong"));
   }
 };
 const number = document.getElementById("number");

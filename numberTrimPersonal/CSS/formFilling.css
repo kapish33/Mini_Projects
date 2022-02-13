@@ -41,3 +41,9 @@ input:last-child:hover {
   background-color: #f1d00a;
   color: #21325e;
 }
+/* for mobile apply mediaQuery */
+@media screen and (max-width: 600px) {
+  input {
+    font-size: 26px;
+  }
+}
