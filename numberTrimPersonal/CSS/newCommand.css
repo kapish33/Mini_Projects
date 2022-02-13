@@ -44,3 +44,8 @@ textarea:focus {
 input:last-child:hover {
   background-color: #00adb5;
 }
+@media screen and (max-width: 600px) {
+  textarea {
+    width: 90%;
+  }
+}
