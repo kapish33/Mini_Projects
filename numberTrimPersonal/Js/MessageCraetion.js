@@ -7,7 +7,9 @@ const handelfunction = (e) => {
   let finnalText = `${e} ${finalText}`;
   // copy to clipboard
   copyToClipboard(finnalText);
-  finalText = "";
+
+  // redirect to home page
+  // window.location.href = "https://wa.me/+917984399290";
 };
 const copyToClipboard = (text) => {
   // Create a textarea element
@@ -25,5 +27,10 @@ const copyToClipboard = (text) => {
   // Remove it from the document
   document.body.removeChild(textArea);
   // redirect to home page
-  //   window.location.href = "https://wa.me/+917984399290";
+  alert("Copied to clipboard");
+  inputMessage.value = "";
+  // window.location.href = "https://wa.me/+917984399290";
+  setTimeout(() => {
+    window.location.href = "https://wa.me/+917984399290";
+  }, 1000);
 };
