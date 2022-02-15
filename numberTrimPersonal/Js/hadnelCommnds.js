@@ -28,7 +28,7 @@ const handelfunction = () => {
         const res = JSON.parse(result);
         if (res.message) alert("Command Already Exists");
         else {
-          alert("Command Added");
+          alert("Command Added Let's Test it");
           // copy key to clipboard
           copyToClipboard(key);
           // if key constians space replace it by %20
