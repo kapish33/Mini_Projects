@@ -27,9 +27,15 @@ const handelfunction = () => {
       .then((result) => {
         const res = JSON.parse(result);
         if (res.message) alert("Command Already Exists");
-        else alert("Command Added");
-        // copy key to clipboard
-        copyToClipboard(key);
+        else {
+          alert("Command Added");
+          // copy key to clipboard
+          copyToClipboard(key);
+          // if key constians space replace it by %20
+          const key1 = key.replaceAll(" ", "%20");
+
+          window.location.href = "https://wa.me/+917984399290/?text=" + key1;
+        }
       })
       .catch((error) => console.log("error", error));
   }
